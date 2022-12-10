@@ -1,6 +1,6 @@
 import { SpinnerTypes, TerminalSpinner } from "@spinners";
 import config from "Settings" assert { type: "json" };
-import type * as _Types from "../@types/index.d.ts";
+import type * as _Types from "../@types/base.d.ts";
 import { DateTime } from "@luxon";
 import colors from "@colors";
 
@@ -17,7 +17,7 @@ export default () => {
     const spin = log("main", "Configurando prototypes...");
 
     // Eu criei essa variável pra facilitar o
-    // gerenciamento de threads/workers
+    // gerenciamento de Workers
     window.services = {};
 
     /* String Prototypes */

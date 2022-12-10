@@ -1,11 +1,11 @@
-import Threads from "../JSON/Threads.json" assert { type: "json" };
+import Workers from "../JSON/Workers.json" assert { type: "json" };
 import { log } from "@prototypes";
 import { delay } from "@std";
 
 export default async function loadServices(dir: string) {
     for (const svc of Deno.readDirSync(dir)) {
         const sector = svc.name.toSector() as threadFiles;
-        const name = Threads[sector]?.name as threadNames;
+        const name = Workers[sector]?.name as threadNames;
 
         if (services[name]?.ready) continue;
         const spinner = log(sector, "Carregando serviço...");
@@ -15,7 +15,7 @@ export default async function loadServices(dir: string) {
             {
                 type: "module",
                 deno: {
-                    permissions: Threads[sector]?.perms || "none",
+                    permissions: Workers[sector]?.perms || "none",
                 },
             },
         );
@@ -27,7 +27,7 @@ export default async function loadServices(dir: string) {
                 if (id === 1) {
                     spinner.end(msg);
                     services[name] = src;
-                    res(true)
+                    res(true);
                 } else {
                     spinner.fail(msg);
                     await delay(15_000);

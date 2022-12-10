@@ -16,8 +16,6 @@ interface Window {
 }
 
 interface Postgres {
-    connect(): void;
-    end(): void;
     ready: boolean;
 }
 
